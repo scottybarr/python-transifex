@@ -12,7 +12,6 @@ def _check_for_new_project_kwargs(*args, **kwargs):
     required_kwargs = ['source_language_code', 'name', 'slug',
                        'repository_url', 'private']
     missing_keys = set(required_kwargs) - set(data.keys())
-    print(data)
     if missing_keys:
         response.status_code = 400
         response.content = missing_keys
