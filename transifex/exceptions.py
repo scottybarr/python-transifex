@@ -1,5 +1,9 @@
+# -*- coding: utf-8 -*-
+
+
 class TransifexException(Exception):
     pass
+
 
 class TransifexAPIException(TransifexException):
     def __init__(self, response=None):
@@ -12,6 +16,7 @@ class TransifexAPIException(TransifexException):
         return '%s: %s' % (
             self.response.status_code, self.response.content
             )
+
 
 class InvalidSlugException(TransifexException):
     pass

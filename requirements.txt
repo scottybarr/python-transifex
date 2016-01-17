@@ -1,6 +1,7 @@
 requests>=0.12.1
 
 # Test requirements
+flake8==2.5.1
 mock==1.0.1
 pytest==2.6.4
 pytest-cov==2.2.0
