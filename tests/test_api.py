@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from unittest import TestCase
-from transifex.api import TransifexAPI
-from mock import patch, Mock, MagicMock
 import json
+
+from mock import patch, Mock, MagicMock
+from unittest import TestCase
+
+from transifex.api import TransifexAPI
 from transifex.exceptions import InvalidSlugException, TransifexAPIException
 
 
@@ -148,7 +150,7 @@ class TransifexAPITest(TestCase):
             TransifexAPIException, self.api.list_resources, project_slug='abc'
         )
 
-    @patch('__builtin__.open', create=True)
+    @patch('io.open', create=True)
     @patch('requests.post')
     def test_new_resource(self, mock_requests, mock_open):
         """
@@ -183,7 +185,7 @@ class TransifexAPITest(TestCase):
         data = json.loads(kwargs['data'])
         self.assertEqual(data['content'], file_contents)
 
-    @patch('__builtin__.open', create=True)
+    @patch('io.open', create=True)
     def test_new_resource_file_not_found(self, mock_open):
         """
         Test the `new_resource` api call when the pofile cannot be found
@@ -199,7 +201,7 @@ class TransifexAPITest(TestCase):
             path_to_pofile='/aaa/file.po'
         )
 
-    @patch('__builtin__.open', create=True)
+    @patch('io.open', create=True)
     def test_new_resource_bad_slug(self, mock_open):
         """
         Test the `new_resource` api call when the slug is invalid
@@ -230,7 +232,7 @@ class TransifexAPITest(TestCase):
             path_to_pofile='/aaa/file.po'
         )
 
-    @patch('__builtin__.open', create=True)
+    @patch('io.open', create=True)
     @patch('requests.post')
     def test_new_resource_server_error(self, mock_requests, mock_open):
         """
@@ -252,7 +254,7 @@ class TransifexAPITest(TestCase):
             project_slug='abc', path_to_pofile='/aaa/file.po'
         )
 
-    @patch('__builtin__.open', create=True)
+    @patch('io.open', create=True)
     @patch('requests.post')
     def test_new_resource_with_optional_args(self, mock_requests, mock_open):
         """
@@ -284,7 +286,7 @@ class TransifexAPITest(TestCase):
         )
         self.assertTrue(mock_requests.called)
 
-    @patch('__builtin__.open', create=True)
+    @patch('io.open', create=True)
     @patch('requests.put')
     def test_update_source_translation(self, mock_requests, mock_open):
         """
@@ -317,7 +319,7 @@ class TransifexAPITest(TestCase):
         )
         self.assertTrue(mock_requests.called)
 
-    @patch('__builtin__.open', create=True)
+    @patch('io.open', create=True)
     def test_update_source_translation_file_not_found(self, mock_open):
         """
         Test the `update_source_translation` api call
@@ -335,7 +337,7 @@ class TransifexAPITest(TestCase):
             path_to_pofile='/aaa/file.po'
         )
 
-    @patch('__builtin__.open', create=True)
+    @patch('io.open', create=True)
     @patch('requests.put')
     def test_update_source_translation_server_error(self, mock_requests,
                                                     mock_open):
@@ -359,7 +361,7 @@ class TransifexAPITest(TestCase):
             path_to_pofile='/aaa/file.po'
         )
 
-    @patch('__builtin__.open', create=True)
+    @patch('io.open', create=True)
     @patch('requests.put')
     def test_new_translation(self, mock_requests, mock_open):
         """
@@ -392,7 +394,7 @@ class TransifexAPITest(TestCase):
         )
         self.assertTrue(mock_requests.called)
 
-    @patch('__builtin__.open', create=True)
+    @patch('io.open', create=True)
     def test_new_translation_file_not_found(self, mock_open):
         """
         Test the `new_translation` api call when the pofile cannot be found
@@ -410,7 +412,7 @@ class TransifexAPITest(TestCase):
             path_to_pofile='/aaa/file.po'
         )
 
-    @patch('__builtin__.open', create=True)
+    @patch('io.open', create=True)
     @patch('requests.put')
     def test_new_translation_server_error(self, mock_requests, mock_open):
         """
@@ -433,7 +435,7 @@ class TransifexAPITest(TestCase):
             path_to_pofile='/aaa/file.po'
         )
 
-    @patch('__builtin__.open', create=True)
+    @patch('io.open', create=True)
     @patch('requests.get')
     def test_get_translation(self, mock_requests, mock_open):
         """
@@ -455,7 +457,7 @@ class TransifexAPITest(TestCase):
         )
         self.assertTrue(mock_requests.called)
 
-    @patch('__builtin__.open', create=True)
+    @patch('io.open', create=True)
     @patch('requests.get')
     def test_get_translation_file_not_found(self, mock_requests, mock_open):
         """

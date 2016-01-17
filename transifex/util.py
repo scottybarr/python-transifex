@@ -1,18 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from transifex.compat import is_py2, str
+
 import re
-
-
-def force_unicode(s, encoding='utf-8'):
-    if isinstance(s, unicode):
-        return s
-
-    if hasattr(s, '__unicode__'):
-        s = unicode(s)
-    else:
-        s = unicode(str(s), encoding)
-
-    return s
 
 
 def slugify(value):
@@ -25,7 +15,9 @@ def slugify(value):
     github.com/django/django/blob/master/django/template/defaultfilters.py
     """
     import unicodedata
-    value = force_unicode(value)
-    value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore')
-    value = unicode(re.sub('[^\w\s-]', '', value).strip().lower())
+    value = str(value)
+    value = unicodedata.normalize('NFKD', value)
+    if is_py2:
+        value = value.encode('ascii', 'ignore')
+    value = str(re.sub('[^\w\s-]', '', value).strip().lower())
     return re.sub('[-\s]+', '-', value)

@@ -3,9 +3,11 @@
 """
 Transifex API
 """
-import requests
+import io
 import json
 import os
+import requests
+
 from transifex.exceptions import TransifexAPIException, InvalidSlugException
 from transifex.util import slugify
 
@@ -128,7 +130,7 @@ class TransifexAPI(object):
         @raises `IOError`
         """
         url = '%s/project/%s/resources/' % (self._base_api_url, project_slug)
-        content = open(path_to_pofile).read()
+        content = io.open(path_to_pofile).read()
 
         __, filename = os.path.split(path_to_pofile)
         if resource_slug is None:
@@ -178,7 +180,7 @@ class TransifexAPI(object):
         url = '%s/project/%s/resource/%s/content/' % (
             self._base_api_url, project_slug, resource_slug
         )
-        content = open(path_to_pofile).read()
+        content = io.open(path_to_pofile).read()
         headers = {'content-type': 'application/json'}
         data = {'content': content}
         response = requests.put(
@@ -236,7 +238,7 @@ class TransifexAPI(object):
         url = '%s/project/%s/resource/%s/translation/%s/' % (
             self._base_api_url, project_slug, resource_slug, language_code
         )
-        content = open(path_to_pofile).read()
+        content = io.open(path_to_pofile).read()
         headers = {'content-type': 'application/json'}
         data = {'content': content}
         response = requests.put(
@@ -281,7 +283,7 @@ class TransifexAPI(object):
         if response.status_code != requests.codes['OK']:
             raise TransifexAPIException(response)
         else:
-            handle = open(output_path, 'w')
+            handle = io.open(output_path, 'w')
             for line in response.iter_content():
                 handle.write(line)
             handle.close()
