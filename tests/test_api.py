@@ -155,7 +155,7 @@ class TransifexAPITest(TestCase):
         Test the `new_resource` api call
         """
         file_contents = 'aaaaaa\nggggg'
-        mock_open.return_value = MagicMock(spec=file)
+        mock_open.return_value = MagicMock()
         mock_open.return_value.read = lambda: file_contents
 
         required_post_params = ['name', 'slug', 'content', 'i18n_type']
@@ -205,7 +205,7 @@ class TransifexAPITest(TestCase):
         Test the `new_resource` api call when the slug is invalid
         """
         file_contents = 'aaaaaa\nggggg'
-        mock_open.return_value = MagicMock(spec=file)
+        mock_open.return_value = MagicMock()
         mock_open.return_value.read = lambda: file_contents
 
         self.assertRaises(
@@ -238,7 +238,7 @@ class TransifexAPITest(TestCase):
         error
         """
         file_contents = 'aaaaaa\nggggg'
-        mock_open.return_value = MagicMock(spec=file)
+        mock_open.return_value = MagicMock()
         mock_open.return_value.read = lambda: file_contents
 
         def side_effect(*args, **kwargs):
@@ -259,7 +259,7 @@ class TransifexAPITest(TestCase):
         Test the `new_resource` api call with the optional args
         """
         file_contents = 'aaaaaa\nggggg'
-        mock_open.return_value = MagicMock(spec=file)
+        mock_open.return_value = MagicMock()
         mock_open.return_value.read = lambda: file_contents
 
         required_post_params = ['name', 'slug', 'content', 'i18n_type']
@@ -291,7 +291,7 @@ class TransifexAPITest(TestCase):
         Test the `update_source_translation` api call
         """
         file_contents = 'aaaaaa\nggggg'
-        mock_open.return_value = MagicMock(spec=file)
+        mock_open.return_value = MagicMock()
         mock_open.return_value.read = lambda: file_contents
 
         required_post_params = ['content', ]
@@ -344,7 +344,7 @@ class TransifexAPITest(TestCase):
         returns an error
         """
         file_contents = 'aaaaaa\nggggg'
-        mock_open.return_value = MagicMock(spec=file)
+        mock_open.return_value = MagicMock()
         mock_open.return_value.read = lambda: file_contents
 
         def side_effect(*args, **kwargs):
@@ -366,7 +366,7 @@ class TransifexAPITest(TestCase):
         Test the `new_translation` api call
         """
         file_contents = 'aaaaaa\nggggg'
-        mock_open.return_value = MagicMock(spec=file)
+        mock_open.return_value = MagicMock()
         mock_open.return_value.read = lambda: file_contents
 
         required_post_params = ['content', ]
@@ -418,7 +418,7 @@ class TransifexAPITest(TestCase):
         returns an error
         """
         file_contents = 'aaaaaa\nggggg'
-        mock_open.return_value = MagicMock(spec=file)
+        mock_open.return_value = MagicMock()
         mock_open.return_value.read = lambda: file_contents
 
         def side_effect(*args, **kwargs):
@@ -439,7 +439,7 @@ class TransifexAPITest(TestCase):
         """
         Test the `get_translation` api call
         """
-        mock_open.return_value = MagicMock(spec=file)
+        mock_open.return_value = MagicMock()
 
         def side_effect(*args, **kwargs):
             mock_response = Mock()
