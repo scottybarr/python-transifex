@@ -17,6 +17,7 @@ def force_unicode(s, encoding='utf-8'):
 
 def slugify(value):
     """
+    @param value string
     Normalizes string, converts to lowercase, removes non-alpha characters,
     and converts spaces to hyphens.
 

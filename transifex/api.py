@@ -26,7 +26,7 @@ class TransifexAPI(object):
             self._host = self._host[:-1]
 
         self._auth = (self._username, self._password)
-        self._base_api_url = '%s/api/2' % (self._host)
+        self._base_api_url = '{0}/api/2'.format(self._host)
 
     def new_project(self, slug, name=None, source_language_code=None,
                     outsource_project_name=None, private=False,
@@ -55,7 +55,9 @@ class TransifexAPI(object):
            if project was not created properly
         """
         if slug != slugify(slug):
-            raise InvalidSlugException('%r is not a valid slug' % (slug))
+            raise InvalidSlugException(
+                '{0} is not a valid slug'.format(slug)
+            )
         if name is None:
             name = slug
         if source_language_code is None:
@@ -126,7 +128,7 @@ class TransifexAPI(object):
         @raises `IOError`
         """
         url = '%s/project/%s/resources/' % (self._base_api_url, project_slug)
-        content = open(path_to_pofile, 'r').read()
+        content = open(path_to_pofile).read()
 
         __, filename = os.path.split(path_to_pofile)
         if resource_slug is None:
@@ -134,7 +136,7 @@ class TransifexAPI(object):
         else:
             if resource_slug != slugify(resource_slug):
                 raise InvalidSlugException(
-                    '%r is not a valid slug' % (resource_slug)
+                    '{0} is not a valid slug'.format(resource_slug)
                 )
 
         if resource_name is None:
@@ -176,7 +178,7 @@ class TransifexAPI(object):
         url = '%s/project/%s/resource/%s/content/' % (
             self._base_api_url, project_slug, resource_slug
         )
-        content = open(path_to_pofile, 'r').read()
+        content = open(path_to_pofile).read()
         headers = {'content-type': 'application/json'}
         data = {'content': content}
         response = requests.put(
@@ -234,7 +236,7 @@ class TransifexAPI(object):
         url = '%s/project/%s/resource/%s/translation/%s/' % (
             self._base_api_url, project_slug, resource_slug, language_code
         )
-        content = open(path_to_pofile, 'r').read()
+        content = open(path_to_pofile).read()
         headers = {'content-type': 'application/json'}
         data = {'content': content}
         response = requests.put(
@@ -339,6 +341,6 @@ class TransifexAPI(object):
         """
         Check the connection to the server and the auth credentials
         """
-        url = '%s/projects/' % (self._base_api_url)
+        url = '{0}/projects/'.format(self._base_api_url)
         response = requests.get(url, auth=self._auth)
         return response.status_code == requests.codes['OK']
