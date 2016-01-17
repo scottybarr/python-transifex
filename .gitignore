@@ -1,5 +1,10 @@
 dist/
 python_transifex.egg-info/
+venv/
+*.pyc
 
 # PyCharm editor files
 .idea
+.cache
+.coverage
+.tox
